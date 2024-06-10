@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/lestrrat-go/jwx/jwk"
@@ -54,12 +53,6 @@ func ValidateToken(ctx context.Context, region, userPoolId, tokenString string) 
 		if !ok {
 			return nil, errors.New("kid header not found")
 		}
-
-		claims, ok := token.Claims.(*AWSCognitoClaims)
-		if !ok {
-			return nil, errors.New("there is problem to get claims")
-		}
-		log.Printf("client_id: %v", claims.Client_ID)
 
 		// "kid" must be present in the public keys set
 		key, found := publicKeySet.LookupKeyID(kid)
