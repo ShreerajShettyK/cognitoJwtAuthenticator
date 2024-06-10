@@ -15,7 +15,7 @@ import (
 
 type AWSCognitoClaims struct {
 	Client_ID string `json:"client_id"`
-	Username  string `json:"username"`
+	Username  string `json:"cognito:username"` // Change here to match the key in JWT payload
 	jwt.StandardClaims
 }
 
